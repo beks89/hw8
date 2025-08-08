@@ -24,7 +24,7 @@ object CommentService : ContentService<Comment> () {
         throw IdOutOfBoundsException()
     }
 
-    fun readByNoteId(noteId: Int): List<Comment> {            // Возвращает комментарии относящиеся к одной заметке
+    fun readByNoteId(noteId: Int): List<Comment> {
         val tempList: ArrayList<Comment> = arrayListOf()
         if (noteId in 1..notes.contents.lastIndex + 1 && !notes.contents[noteId - 1].isDelete) {
             for (comment in contents) {
@@ -36,7 +36,7 @@ object CommentService : ContentService<Comment> () {
         }
         throw IdOutOfBoundsException()
     }
-// notes.contents[id - 1].isDelete
+
     override fun restore(id: Int): Boolean {
         if (id !in 1..(contents.lastIndex + 1) || !contents[id - 1].isDelete) {
             throw IdOutOfBoundsException()
